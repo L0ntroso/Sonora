@@ -189,7 +189,7 @@ function card(p) {
         <div class="card">
             <a href="produto.html?id=${p.id}">
                 ${p.antigo ? `<span class="tag">-${desconto(p)}%</span>` : ''}
-                <div class="foto"><img src="img/${p.img}.jpg" alt="${p.nome}"></div>
+                <div class="foto"><img src="${p.img}.jpg" alt="${p.nome}"></div>
                 <h3>${p.nome}</h3>
                 <div class="estrelas">${estrelas(p.nota)} <small>(${p.aval})</small></div>
                 <p class="desc">${p.desc}</p>
