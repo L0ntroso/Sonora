@@ -719,35 +719,42 @@ function conta(modo) {
 
         const email = $('email').value.trim().toLowerCase();
 
-        if (modo === 'entrar') {
-            const usuario = usuarios().find(u =>
-                u.email === email && u.senha === $('senha').value
-            );
+     const email = $('email').value.trim().toLowerCase();
+const listaUsuarios = usuarios();
 
-            if (!usuario) {
-                $('form').querySelector('[data-erro=senha]').textContent = 'E-mail ou senha incorretos';
-                return;
-            }
-        } else {
-            if (usuarios().some(u => u.email === email)) {
-                $('form').querySelector('[data-erro=email]').textContent = 'E-mail já cadastrado';
-                return;
-            }
+if (modo === 'entrar') {
+    const usuario = listaUsuarios.find(u =>
+        u.email === email && u.senha === $('senha').value
+    );
 
-            usuarios().push({
-                nome: $('nome').value,
-                email,
-                senha: $('senha').value,
-                endereco: $('endereco').value,
-                cep: $('cep').value
-            });
+    if (!usuario) {
+        $('form').querySelector('[data-erro=senha]').textContent =
+            'E-mail ou senha incorretos';
+        return;
+    }
+} else {
+    if (listaUsuarios.some(u => u.email === email)) {
+        $('form').querySelector('[data-erro=email]').textContent =
+            'E-mail já cadastrado';
+        return;
+    }
 
-            localStorage.setItem('sonora_usuarios', JSON.stringify(usuarios()));
-        }
+    listaUsuarios.push({
+        nome: $('nome').value,
+        email,
+        senha: $('senha').value,
+        endereco: $('endereco').value,
+        cep: $('cep').value
+    });
 
-        localStorage.setItem('sonora_sessao', email);
+    localStorage.setItem('sonora_usuarios', JSON.stringify(listaUsuarios));
+}
 
-        location.href = 'index.html';
+localStorage.setItem('sonora_sessao', email);
+
+location.href = 'index.html';
+
+        
     };
 }
 
