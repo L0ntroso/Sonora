@@ -718,8 +718,6 @@ function conta(modo) {
         if (!validar($('form'), regras)) return;
 
         const email = $('email').value.trim().toLowerCase();
-
-     const email = $('email').value.trim().toLowerCase();
 const listaUsuarios = usuarios();
 
 if (modo === 'entrar') {
