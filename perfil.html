@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perfil - Sonora</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-pagina="perfil">
+<main class="wrap pagina">
+<div class="centro"><h2>Meu perfil</h2><form class="form" id="form" novalidate><div class="campos um"><div class="campo"><input type="text" id="nome" name="nome" placeholder="Nome completo" autocomplete="off"><span class="erro" data-erro="nome"></span></div><div class="campo"><input type="email" id="email" name="email" placeholder="E-mail" autocomplete="off"><span class="erro" data-erro="email"></span></div><div class="campo"><input type="password" id="senha" name="senha" placeholder="Nova senha (deixe em branco para manter)" autocomplete="off"><span class="erro" data-erro="senha"></span></div><div class="campo"><input type="text" id="endereco" name="endereco" placeholder="Endereço" autocomplete="off"><span class="erro" data-erro="endereco"></span></div><div class="campo"><input type="text" id="cep" name="cep" placeholder="CEP" autocomplete="off"><span class="erro" data-erro="cep"></span></div></div><h3 style="margin-top:18px">Formas de pagamento registradas:</h3><label><input type="checkbox" id="pixreg"> Pix</label><label><input type="checkbox" id="cartaoreg"> Cartão</label><div id="bloco-cartao" class="campos um" style="margin-top:12px"><div class="campo"><input type="text" id="cartao" name="cartao" placeholder="Número do cartão" autocomplete="off"><span class="erro" data-erro="cartao"></span></div><div class="campo"><input type="text" id="validade" name="validade" placeholder="MM/AA" autocomplete="off"><span class="erro" data-erro="validade"></span></div><div class="campo"><input type="text" id="cvv" name="cvv" placeholder="CVV" autocomplete="off"><span class="erro" data-erro="cvv"></span></div></div><button class="btn" type="submit">Salvar alterações</button><button class="btn btn-sec" type="button" id="sair">Sair da conta</button></form></div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
