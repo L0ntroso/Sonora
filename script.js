@@ -85,6 +85,17 @@ const Carrinho = {
     quantidade() {
         return this.ler().reduce((s, p) => s + p.qtd, 0);
     },
+    return this.ler()
+        .map(p => {
+            const produto = PRODUTOS.find(x => x.id === p.id);
+            return produto ? {...produto, qtd:p.qtd} : null;
+        })
+        .filter(Boolean);
+    },
+    quantidade() {
+    return this.ler().reduce((s, p) => s + p.qtd, 0);
+    },
+    
     subtotal() {
         return this.itens().reduce((s, p) => s + p.preco * p.qtd, 0);
     },
@@ -183,7 +194,7 @@ function card(p) {
         <div class="card">
             <a href="produto.html?id=${p.id}">
                 ${p.antigo ? `<span class="tag">-${desconto(p)}%</span>` : ''}
-                <div class="foto"><img src="img/${p.img}.jpg" alt="${p.nome}"></div>
+                <div class="foto"><img src="${p.img}.jpg" alt="${p.nome}"></div>
                 <h3>${p.nome}</h3>
                 <div class="estrelas">${estrelas(p.nota)} <small>(${p.aval})</small></div>
                 <p class="desc">${p.desc}</p>
@@ -289,7 +300,7 @@ function produto() {
         <p class="caminho"><a href="index.html">Início</a> &gt; <a href="produtos.html?cat=${p.cat}">${c.nome}</a> &gt; ${p.nome}</p>
         <div class="produto">
             <div class="gal">
-                <div class="foto"><img src="img/${p.img}.jpg" alt="${p.nome}"></div>
+                <div class="foto"><img src="${p.img}.jpg" alt="${p.nome}"></div>
             </div>
             <div class="info">
                 <span class="frete">${p.cond} | ${p.vendidos} vendidos</span>
@@ -364,7 +375,7 @@ function carrinhoPag() {
                 <div>
                     ${itens.map(p => `
                         <div class="linha">
-                            <div class="foto"><img src="img/${p.img}.jpg" alt="${p.nome}"></div>
+                            <div class="foto"><img src="${p.img}.jpg" alt="${p.nome}"></div>
                             <div class="dados">
                                 <b>${p.nome}</b>
                                 Vendido por ${CATEGORIAS[p.cat].loja}<br>
@@ -712,36 +723,41 @@ function conta(modo) {
         if (!validar($('form'), regras)) return;
 
         const email = $('email').value.trim().toLowerCase();
+const listaUsuarios = usuarios();
 
-        if (modo === 'entrar') {
-            const usuario = usuarios().find(u =>
-                u.email === email && u.senha === $('senha').value
-            );
+if (modo === 'entrar') {
+    const usuario = listaUsuarios.find(u =>
+        u.email === email && u.senha === $('senha').value
+    );
 
-            if (!usuario) {
-                $('form').querySelector('[data-erro=senha]').textContent = 'E-mail ou senha incorretos';
-                return;
-            }
-        } else {
-            if (usuarios().some(u => u.email === email)) {
-                $('form').querySelector('[data-erro=email]').textContent = 'E-mail já cadastrado';
-                return;
-            }
+    if (!usuario) {
+        $('form').querySelector('[data-erro=senha]').textContent =
+            'E-mail ou senha incorretos';
+        return;
+    }
+} else {
+    if (listaUsuarios.some(u => u.email === email)) {
+        $('form').querySelector('[data-erro=email]').textContent =
+            'E-mail já cadastrado';
+        return;
+    }
 
-            usuarios().push({
-                nome: $('nome').value,
-                email,
-                senha: $('senha').value,
-                endereco: $('endereco').value,
-                cep: $('cep').value
-            });
+    listaUsuarios.push({
+        nome: $('nome').value,
+        email,
+        senha: $('senha').value,
+        endereco: $('endereco').value,
+        cep: $('cep').value
+    });
 
-            localStorage.setItem('sonora_usuarios', JSON.stringify(usuarios()));
-        }
+    localStorage.setItem('sonora_usuarios', JSON.stringify(listaUsuarios));
+}
 
-        localStorage.setItem('sonora_sessao', email);
+localStorage.setItem('sonora_sessao', email);
 
-        location.href = 'index.html';
+location.href = 'index.html';
+
+        
     };
 }
 
