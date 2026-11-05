@@ -87,10 +87,10 @@ const Carrinho = {
         })
         .filter(Boolean);
     },
-    },
     quantidade() {
-        return this.ler().reduce((s, p) => s + p.qtd, 0);
+    return this.ler().reduce((s, p) => s + p.qtd, 0);
     },
+    
     subtotal() {
         return this.itens().reduce((s, p) => s + p.preco * p.qtd, 0);
     },
