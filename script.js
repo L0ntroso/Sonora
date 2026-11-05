@@ -295,7 +295,7 @@ function produto() {
         <p class="caminho"><a href="index.html">Início</a> &gt; <a href="produtos.html?cat=${p.cat}">${c.nome}</a> &gt; ${p.nome}</p>
         <div class="produto">
             <div class="gal">
-                <div class="foto"><img src="img/${p.img}.jpg" alt="${p.nome}"></div>
+                <div class="foto"><img src="${p.img}.jpg" alt="${p.nome}"></div>
             </div>
             <div class="info">
                 <span class="frete">${p.cond} | ${p.vendidos} vendidos</span>
@@ -370,7 +370,7 @@ function carrinhoPag() {
                 <div>
                     ${itens.map(p => `
                         <div class="linha">
-                            <div class="foto"><img src="img/${p.img}.jpg" alt="${p.nome}"></div>
+                            <div class="foto"><img src="${p.img}.jpg" alt="${p.nome}"></div>
                             <div class="dados">
                                 <b>${p.nome}</b>
                                 Vendido por ${CATEGORIAS[p.cat].loja}<br>
