@@ -80,6 +80,11 @@ const Carrinho = {
         localStorage.removeItem('sonora_cupom');
     },
     itens() {
+        return this.ler().map(p => ({...PRODUTOS.find(x => x.id === p.id), qtd:p.qtd}));
+    },
+    quantidade() {
+        return this.ler().reduce((s, p) => s + p.qtd, 0);
+    },
     return this.ler()
         .map(p => {
             const produto = PRODUTOS.find(x => x.id === p.id);
